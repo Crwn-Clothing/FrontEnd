@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, NavLink } from "react-router-dom";
 
 import "./menu-items.scss";
 
@@ -13,8 +13,10 @@ const MenuItem = props => {
 				}}
 			/>
 			<div className="content">
-				<h1 className="title">{props.section.title.toUpperCase()}</h1>
-				<span className="subtitle">SHOP NOW</span>
+				<NavLink exact to={`${props.section.title}`}>
+					<h1 className="title">{props.section.title.toUpperCase()}</h1>
+					<span className="subtitle">SHOP NOW</span>
+				</NavLink>
 			</div>
 		</div>
 	);

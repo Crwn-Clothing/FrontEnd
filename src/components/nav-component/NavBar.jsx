@@ -31,7 +31,7 @@ export const NavBar = () => {
 				</li>
 				<li>
 					<Button>
-						<NavLink exact to="/" activeClassName="selected">
+						<NavLink exact to="/cart" activeClassName="selected">
 							Cart
 						</NavLink>
 					</Button>

@@ -16,7 +16,7 @@ export const Login = () => {
 	};
 	return (
 		<div className="login">
-			<h2>CREATE AN ACCOUNT</h2>
+			<h2>Login</h2>
 			<form className="login-form" id="input-login" onSubmit={handleSubmit}>
 				<input
 					placeholder="Username"

@@ -19,7 +19,7 @@ export const SignUp = () => {
 	};
 	return (
 		<div className="login">
-			<h2>LOGIN</h2>
+			<h2>CREATE AN ACCOUNT</h2>
 			<form className="login-form" onSubmit={handleSubmit}>
 				<input
 					placeholder="First Name"
