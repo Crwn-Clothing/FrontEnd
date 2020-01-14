@@ -1,12 +1,17 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import userActions from "../../actions/index";
 
 import "./Navbar.scss";
 
 const NavBar = props => {
+	const dispatch = useDispatch();
+	const handleLogOut = () => {
+		props.loginStatus(props.userLoginStatus);
+		dispatch(userActions.logOutUser());
+	};
 	return (
 		<div>
 			<ul className="nav-bar">
@@ -46,22 +51,35 @@ const NavBar = props => {
 						</NavLink>
 					</Button>
 				</li>
-				<li>
-					<Button onClick={null} variant="outlined">
-						<NavLink exact to="/login" activeClassName="selected">
-							{props.loginStatus ? "Logout" : "Login"}
-						</NavLink>
-					</Button>
-				</li>
+				{props.userLoginStatus ? (
+					<li>
+						<Button variant="outlined" onClick={handleLogOut}>
+							<NavLink exact to="/login" activeClassName="selected">
+								Logout
+							</NavLink>
+						</Button>
+					</li>
+				) : (
+					<li>
+						<Button variant="outlined">
+							<NavLink exact to="/login" activeClassName="selected">
+								Login
+							</NavLink>
+						</Button>
+					</li>
+				)}
 			</ul>
 		</div>
 	);
 };
 
 const mapStateToProps = state => ({
-	loginStatus: state.userLogin.isLoggedIn
+	userLoginStatus: state.userLogin.isLoggedIn
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+	logOutUser: () => dispatch(userActions.logOutUser()),
+	loginStatus: loginStatus => dispatch(userActions.setLoginStatus(loginStatus))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

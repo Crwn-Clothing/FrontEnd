@@ -16,11 +16,7 @@ const App = () => {
 			<NavBar />
 			<Route exact path="/" component={HomePage} />
 
-			<Route
-				exact
-				path="/login"
-				render={props => <LoginContainer {...props} />}
-			/>
+			<Route exact path="/login" component={LoginContainer} />
 
 			{/* <Route
 				exact

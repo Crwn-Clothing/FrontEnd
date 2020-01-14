@@ -19,6 +19,10 @@ const Login = props => {
 		props.loginUserToDB(loginInput);
 		props.setLoginStatus(props.loginStatus);
 		props.history.push("/");
+		setLoginInput({
+			username: "",
+			password: ""
+		});
 	};
 	return (
 		<div className="login">

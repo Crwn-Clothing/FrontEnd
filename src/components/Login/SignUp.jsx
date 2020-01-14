@@ -22,7 +22,10 @@ const SignUp = props => {
 		console.log("signUpInput: ", signUpInput);
 		props.newUserToDB(signUpInput);
 		props.setLoginStatus(props.loginStatus);
-		// props.history.push("/");
+		setSignUpInput({
+			username: "",
+			password: ""
+		});
 	};
 	return (
 		<div className="login">

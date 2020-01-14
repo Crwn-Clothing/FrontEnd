@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowerRouter as Router, BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
 import logger from "redux-logger";
@@ -22,9 +22,9 @@ const store = createStore(
 
 ReactDOM.render(
 	<Provider store={store}>
-		<BrowserRouter>
+		<Router>
 			<App />
-		</BrowserRouter>
+		</Router>
 	</Provider>,
 	document.getElementById("root")
 );

@@ -88,7 +88,7 @@ const persistUser = userObj => dispatch => {
 		});
 };
 
-const logoutUser = dispatch => {
+const logOutUser = () => dispatch => {
 	dispatch(clearUserAction());
 	localStorage.clear();
 };
@@ -99,5 +99,5 @@ export default {
 	deleteUserFromDB,
 	loginUserToDB,
 	persistUser,
-	logoutUser
+	logOutUser
 };
