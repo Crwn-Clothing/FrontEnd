@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setUserAction, getAuthToken } from "../../actions/index";
+import userActions from "../../actions/index";
 import Button from "@material-ui/core/Button";
 
 const Login = props => {
+	console.log(props);
 	const [loginInput, setLoginInput] = useState({
 		username: "",
 		password: ""
@@ -13,7 +14,11 @@ const Login = props => {
 		setLoginInput({ ...loginInput, [e.target.name]: e.target.value });
 	};
 	const handleSubmit = e => {
+		console.log("history: ", props);
 		e.preventDefault();
+		props.loginUserToDB(loginInput);
+		props.setLoginStatus(props.loginStatus);
+		props.history.push("/");
 	};
 	return (
 		<div className="login">
@@ -29,31 +34,37 @@ const Login = props => {
 				/>
 				<input
 					placeholder="Password"
-					type="text"
+					type="password"
 					name="password"
 					value={loginInput.password}
 					onChange={handleChange}
 					id="login-text"
 				/>
+				<Button
+					variant="outlined"
+					type="submit"
+					style={{
+						margin: "20px auto",
+						background: "black",
+						width: "80%",
+						color: "whitesmoke"
+					}}
+				>
+					Login
+				</Button>
 			</form>
-			<Button
-				style={{
-					margin: "20px auto",
-					background: "black",
-					width: "80%",
-					color: "whitesmoke"
-				}}
-			>
-				Login
-			</Button>
 		</div>
 	);
 };
 
-// const mapStateToProps = state => {
+const mapStateToProps = state => ({
+	loginStatus: state.userLogin.isLoggedIn
+});
 
-// };
+const mapDispatchToProps = dispatch => ({
+	loginUserToDB: loginInput => dispatch(userActions.loginUserToDB(loginInput)),
+	setLoginStatus: loginStatus =>
+		dispatch(userActions.setLoginStatus(loginStatus))
+});
 
-const mapDispatchToProps = dispatch => {};
-
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

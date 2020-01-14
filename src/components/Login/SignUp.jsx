@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import {
-	setUserAction,
-	getAuthToken,
-	setLoginStatus
-} from "../../actions/index";
+import userActions from "../../actions/index";
 import Button from "@material-ui/core/Button";
 
 const SignUp = props => {
-	console.log(props.loginStatus);
 	const [signUpInput, setSignUpInput] = useState({
 		first_name: "",
 		last_name: "",
@@ -25,8 +20,9 @@ const SignUp = props => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		console.log("signUpInput: ", signUpInput);
-		props.setUserAction(signUpInput);
+		props.newUserToDB(signUpInput);
 		props.setLoginStatus(props.loginStatus);
+		// props.history.push("/");
 	};
 	return (
 		<div className="login">
@@ -93,8 +89,9 @@ const mapStateToProps = state => ({
 	loginStatus: state.userLogin.isLoggedIn
 });
 const mapDispatchToProps = dispatch => ({
-	setUserAction: userObj => dispatch(setUserAction(userObj)),
-	setLoginStatus: loginStatus => dispatch(setLoginStatus(loginStatus))
+	newUserToDB: userObj => dispatch(userActions.newUserToDB(userObj)),
+	setLoginStatus: loginStatus =>
+		dispatch(userActions.setLoginStatus(loginStatus))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

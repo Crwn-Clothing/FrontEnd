@@ -5,11 +5,11 @@ import SignUp from "./SignUp";
 
 import "./Login.scss";
 
-export const LoginContainer = () => {
+export const LoginContainer = props => {
 	return (
 		<div className="login-page">
-			<Login />
-			<SignUp />
+			<Login history={props.history} />
+			<SignUp history={props.history} />
 		</div>
 	);
 };
