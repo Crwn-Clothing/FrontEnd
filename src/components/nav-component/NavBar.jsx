@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import { connect } from "react-redux";
 
 import "./Navbar.scss";
-export const NavBar = () => {
+
+const NavBar = props => {
 	return (
 		<div>
 			<ul className="nav-bar">
@@ -46,7 +48,7 @@ export const NavBar = () => {
 				<li>
 					<Button variant="outlined">
 						<NavLink exact to="/login" activeClassName="selected">
-							Login
+							{props.loginStatus ? "Logout" : "Login"}
 						</NavLink>
 					</Button>
 				</li>
@@ -54,3 +56,9 @@ export const NavBar = () => {
 		</div>
 	);
 };
+
+const mapStateToProps = state => ({
+	loginStatus: state.userLogin.isLoggedIn
+});
+
+export default connect(mapStateToProps)(NavBar);

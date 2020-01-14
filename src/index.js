@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowerRouter as Router, BrowserRouter } from "react-router-dom";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import { logger } from "redux-logger";
+import logger from "redux-logger";
+import thunk from "redux-thunk";
 
 import App from "./App";
 import { rootReducers } from "./reducers";
@@ -16,7 +17,7 @@ const reduxDevTool =
 
 const store = createStore(
 	rootReducers,
-	compose(applyMiddleware(logger), reduxDevTool)
+	compose(applyMiddleware(thunk, logger), reduxDevTool)
 );
 
 ReactDOM.render(
