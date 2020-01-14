@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+
+import { setUserAction, getAuthToken } from "../../actions/index";
 import Button from "@material-ui/core/Button";
 
-export const SignUp = () => {
+const SignUp = props => {
 	const [signUpInput, setSignUpInput] = useState({
 		first_name: "",
 		last_name: "",
 		email: "",
+		username: "",
 		password: ""
 	});
 
@@ -16,6 +19,8 @@ export const SignUp = () => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
+		console.log("signUpInput: ", signUpInput);
+		props.setUserAction(signUpInput);
 	};
 	return (
 		<div className="login">
@@ -61,17 +66,25 @@ export const SignUp = () => {
 					onChange={handleChange}
 					id="login-text"
 				/>
+				<Button
+					variant="outlined"
+					type="submit"
+					style={{
+						margin: "20px auto",
+						background: "black",
+						width: "80%",
+						color: "whitesmoke"
+					}}
+				>
+					Create Account
+				</Button>
 			</form>
-			<Button
-				style={{
-					margin: "20px auto",
-					background: "black",
-					width: "80%",
-					color: "whitesmoke"
-				}}
-			>
-				Create Account
-			</Button>
 		</div>
 	);
 };
+
+const mapDispatchToProps = dispatch => ({
+	setUserAction: userObj => dispatch(setUserAction(userObj))
+});
+
+export default connect(null, mapDispatchToProps)(SignUp);

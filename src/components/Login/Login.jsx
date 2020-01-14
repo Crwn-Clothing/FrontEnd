@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+import { setUserAction, getAuthToken } from "../../actions/index";
 import Button from "@material-ui/core/Button";
 
-export const Login = () => {
+const Login = props => {
 	const [loginInput, setLoginInput] = useState({
 		username: "",
 		password: ""
@@ -48,3 +49,11 @@ export const Login = () => {
 		</div>
 	);
 };
+
+// const mapStateToProps = state => {
+
+// };
+
+const mapDispatchToProps = dispatch => {};
+
+export default connect(null, mapDispatchToProps)(Login);

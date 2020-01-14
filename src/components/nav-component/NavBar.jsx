@@ -30,21 +30,21 @@ export const NavBar = () => {
 					</h1>
 				</li>
 				<li>
-					<Button>
+					<Button variant="outlined">
 						<NavLink exact to="/cart" activeClassName="selected">
 							Cart
 						</NavLink>
 					</Button>
 				</li>
 				<li>
-					<Button>
+					<Button variant="outlined">
 						<NavLink exact to="/wishlist" activeClassName="selected">
 							Wishlist
 						</NavLink>
 					</Button>
 				</li>
 				<li>
-					<Button>
+					<Button variant="outlined">
 						<NavLink exact to="/login" activeClassName="selected">
 							Login
 						</NavLink>
