@@ -49,6 +49,10 @@ export default class HomePage extends Component {
 		});
 	};
 
+	loading = () => {
+		return <h1>Loading</h1>;
+	};
+
 	render() {
 		return <div className="directory-menu">{this.renderData()}</div>;
 	}

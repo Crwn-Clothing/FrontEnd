@@ -7,6 +7,7 @@ import userActions from "../../actions/index";
 import "./Navbar.scss";
 
 const NavBar = props => {
+	console.log("localStorage: ", JSON.stringify(localStorage.currentUser));
 	const dispatch = useDispatch();
 	const handleLogOut = () => {
 		props.loginStatus(props.userLoginStatus);
@@ -37,6 +38,15 @@ const NavBar = props => {
 						</NavLink>
 					</h1>
 				</li>
+				{localStorage.token ? (
+					<li>
+						<Button variant="outlined">
+							<NavLink exact to="/account" activeClassName="selected">
+								Account
+							</NavLink>
+						</Button>
+					</li>
+				) : null}
 				<li>
 					<Button variant="outlined">
 						<NavLink exact to="/cart" activeClassName="selected">
@@ -51,7 +61,7 @@ const NavBar = props => {
 						</NavLink>
 					</Button>
 				</li>
-				{props.userLoginStatus ? (
+				{localStorage.token ? (
 					<li>
 						<Button variant="outlined" onClick={handleLogOut}>
 							<NavLink exact to="/login" activeClassName="selected">

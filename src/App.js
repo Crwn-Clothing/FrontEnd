@@ -9,6 +9,7 @@ import { Footer } from "./components/footer/footer";
 import "./App.scss";
 import Login from "./components/Login/Login";
 import SignUp from "./components/Login/SignUp";
+import AccountPage from "./components/pages/account-page/AccountPage";
 
 const App = () => {
 	return (
@@ -17,6 +18,8 @@ const App = () => {
 			<Route exact path="/" component={HomePage} />
 
 			<Route exact path="/login" component={LoginContainer} />
+
+			<Route exact path="/account" component={AccountPage} />
 
 			{/* <Route
 				exact

@@ -2,7 +2,8 @@ const baseURL = "http://localhost:3001/users";
 const specificUserURL = userId => `http://localhost:3001/users/${userId}`;
 const loginURL = "http://localhost:3001/login";
 const persistUserURL = "http://localhost:3001/login/auth";
-
+const patchUserURL = userId => `http://localhost:3001/users/${userId}`;
+// action callers
 const setUserAction = userObj => ({
 	type: "SET_USER",
 	payload: userObj
@@ -26,6 +27,12 @@ const setUserLogOut = () => {
 	};
 };
 
+const updateUserInfo = newUserObj => ({
+	type: "UPDATE_USER_INFO",
+	payload: newUserObj
+});
+
+// fetch Requests
 const newUserToDB = userObj => dispatch => {
 	const config = {
 		method: "POST",
@@ -38,8 +45,8 @@ const newUserToDB = userObj => dispatch => {
 	fetch(baseURL, config)
 		.then(res => res.json())
 		.then(data => {
-			console.log("data: ", data);
 			dispatch(setUserAction(data.user));
+			localStorage.setItem("currentUser", data.user);
 			localStorage.setItem("token", data.token);
 		});
 };
@@ -69,6 +76,7 @@ const loginUserToDB = userObj => dispatch => {
 	fetch(loginURL, config)
 		.then(res => res.json())
 		.then(data => {
+			console.log(data.user);
 			dispatch(setUserAction(data.user));
 			localStorage.setItem("token", data.token);
 		});
@@ -91,6 +99,25 @@ const persistUser = userObj => dispatch => {
 const logOutUser = () => dispatch => {
 	dispatch(clearUserAction());
 	localStorage.clear();
+};
+
+const updatedUserInfo = user => dispatch => {
+	const config = {
+		method: "PATCH",
+		headers: {
+			Accept: "application/json",
+			"Content-Type": "application/json",
+			Authorization: `Bearer ${localStorage.token}`
+		},
+		body: JSON.stringify({
+			email: user.email,
+			username: user.username,
+			password: user.password
+		})
+	};
+	fetch(patchUserURL, config)
+		.then(res => res.json())
+		.then(user => dispatch(setUserAction(user)));
 };
 
 export default {
