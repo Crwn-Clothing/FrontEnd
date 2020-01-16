@@ -6,11 +6,8 @@ import HomePage from "./components/pages/homepage/HomePage";
 import { LoginContainer } from "./components/Login/LoginContainer";
 import { Footer } from "./components/footer/footer";
 import { useDispatch } from "react-redux";
-import "./App.scss";
-import Login from "./components/Login/Login";
-import SignUp from "./components/Login/SignUp";
+
 import AccountPage from "./components/pages/account-page/AccountPage";
-import Shop from "./components/pages/shop-page/Shop";
 import productActions from "./actions/pages/shop";
 import HatsContainer from "./components/pages/shop-page/hats/HatsContainer";
 import JacketsContainer from "./components/pages/shop-page/jackets/JacketsContainer";
@@ -20,6 +17,8 @@ import MensContainer from "./components/pages/shop-page/mens/MensContainer";
 import NavBarLoginIn from "./components/nav-component/NavBarLoginIn";
 import CartContainer from "./components/pages/cart/CartContainer";
 import cartActions from "./actions/pages/cart";
+
+import "./App.scss";
 
 const App = props => {
 	const dispatch = useDispatch();
