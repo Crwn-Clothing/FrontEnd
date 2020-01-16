@@ -9,6 +9,11 @@ const hatsAction = hats => ({
 	type: "GET_HATS",
 	payload: hats
 });
+
+const getHat = hat => ({
+	type: "GET_HAT",
+	payload: hat
+});
 const jacketsAction = jackets => ({
 	type: "GET_JACKETS",
 	payload: jackets
@@ -49,6 +54,9 @@ const getHats = products => dispatch => {
 	let hats = products.filter(product => product.title === "hats");
 	dispatch(hatsAction(hats));
 };
+const getHatProduct = product => dispatch => {
+	dispatch(getHat(product));
+};
 const getJackets = products => dispatch => {
 	let jackets = products.filter(product => product.title === "jackets");
 	dispatch(jacketsAction(jackets));
@@ -72,5 +80,6 @@ export default {
 	getJackets,
 	getSneakers,
 	getWomens,
-	getMens
+	getMens,
+	getHatProduct
 };

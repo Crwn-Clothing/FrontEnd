@@ -1,7 +1,7 @@
 const initialState = {
 	products: [],
-	userOrders: [],
 	hats: [],
+	hat: {},
 	jackets: [],
 	sneakers: [],
 	womens: [],
@@ -22,6 +22,11 @@ export const shopReducer = (state = initialState, action) => {
 			return { ...state, womens: action.payload };
 		case "GET_MENS":
 			return { ...state, mens: action.payload };
+		case "GET_HAT":
+			return {
+				...state,
+				hat: action.payload
+			};
 		default:
 			return state;
 	}

@@ -1,5 +1,7 @@
 import React from "react";
 import { Grid, makeStyles } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import cartActions from "../../../../actions/pages/cart";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -14,12 +16,14 @@ const useStyles = makeStyles(theme => ({
 		backgroundSize: "cover"
 	},
 	name: {
-		marginLeft: "140px",
-		textAlign: "center"
+		marginLeft: "20px",
+		textAlign: "center",
+		width: "300px"
 	},
 	price: {
-		marginLeft: "150px",
-		textAlign: "center"
+		marginLeft: "20px",
+		textAlign: "center",
+		width: "300px"
 	},
 	paper: {
 		padding: theme.spacing(2),
@@ -28,15 +32,20 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 const MensPage = props => {
+	const dispatch = useDispatch();
+	const selectProduct = product => {
+		dispatch(cartActions.userCurrentOrder(product));
+		dispatch(cartActions.addToCurrentUser(product));
+	};
 	const renderGrids = () => {
 		return (
-			<Grid spacing={3} item xs={2}>
+			<Grid onClick={() => selectProduct(props.men)} spacing={3} item xs={2}>
 				<img
 					className={classes.image}
 					src={props.men.imageUrl}
 					alt={props.men.name}
 				/>
-				<p className={classes.name}>{props.men.name}</p>
+				<h4 className={classes.name}>{props.men.name}</h4>
 				<p className={classes.price}>${props.men.price_cents}</p>
 			</Grid>
 		);

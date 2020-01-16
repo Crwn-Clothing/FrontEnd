@@ -76,8 +76,8 @@ const loginUserToDB = userObj => dispatch => {
 	fetch(loginURL, config)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data.user);
 			dispatch(setUserAction(data.user));
+			localStorage.setItem("currentUser", data.user);
 			localStorage.setItem("token", data.token);
 		});
 };

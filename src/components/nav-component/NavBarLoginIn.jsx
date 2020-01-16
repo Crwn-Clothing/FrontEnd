@@ -1,14 +1,19 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import userActions from "../../actions/index";
 
 import "./Navbar.scss";
 
-const NavBar = props => {
+const NavBarLogIn = props => {
 	const dispatch = useDispatch();
+	const userCart = useSelector(state => state.cart.userCart);
 
+	const handleLogOut = () => {
+		props.loginStatus(props.userLoginStatus);
+		dispatch(userActions.logOutUser());
+	};
 	return (
 		<div>
 			<ul className="nav-bar">
@@ -34,11 +39,17 @@ const NavBar = props => {
 						</NavLink>
 					</h1>
 				</li>
-
+				<li>
+					<Button variant="outlined">
+						<NavLink exact to="/account" activeClassName="selected">
+							Account
+						</NavLink>
+					</Button>
+				</li>
 				<li>
 					<Button variant="outlined">
 						<NavLink exact to="/cart" activeClassName="selected">
-							Cart
+							Cart({userCart.length})
 						</NavLink>
 					</Button>
 				</li>
@@ -51,9 +62,9 @@ const NavBar = props => {
 				</li>
 
 				<li>
-					<Button variant="outlined">
+					<Button onClick={handleLogOut} variant="outlined">
 						<NavLink exact to="/login" activeClassName="selected">
-							Login
+							Logout
 						</NavLink>
 					</Button>
 				</li>
@@ -71,4 +82,4 @@ const mapDispatchToProps = dispatch => ({
 	loginStatus: loginStatus => dispatch(userActions.setLoginStatus(loginStatus))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBarLogIn);

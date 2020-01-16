@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
 import { loginReducer } from "./loginReducer";
 import { shopReducer } from "./shopReducer";
+import cart from "../actions/pages/cart";
+import { cartReducer } from "./cartReducer";
 
 export const rootReducers = combineReducers({
 	userLogin: loginReducer,
-	shop: shopReducer
+	shop: shopReducer,
+	cart: cartReducer
 });
