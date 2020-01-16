@@ -19,7 +19,7 @@ const CartContainer = props => {
 		props.history.push("/checkout");
 	};
 	return (
-		<div>
+		<div className="card-container">
 			{renderCartItem()}
 			{isLoggedIn ? (
 				<Button

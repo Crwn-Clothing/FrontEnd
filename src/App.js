@@ -29,7 +29,11 @@ const App = props => {
 	}, [props.getProducts, dispatch]);
 	return (
 		<div className="App">
-			{props.isLoggedIn ? <NavBarLoginIn /> : <NavBar />}
+			{props.isLoggedIn ? (
+				<NavBarLoginIn history={props.history} />
+			) : (
+				<NavBar history={props.history} />
+			)}
 			<Switch>
 				<Route exact path="/" component={HomePage} />
 				<Route exact path="/login" component={LoginContainer} />

@@ -1,3 +1,6 @@
+#user-login {
+	border-left: 2px solid black;
+}
 .login {
 	width: 50%;
 	margin: auto;
@@ -5,6 +8,7 @@
 .login-form {
 	display: flex;
 	flex-direction: column;
+
 	input {
 		width: 70%;
 		margin: 0 auto;

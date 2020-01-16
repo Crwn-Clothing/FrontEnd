@@ -22,6 +22,18 @@ export const cartReducer = (state = initialState, action) => {
 				userCart: [...state.userCart, action.payload]
 			};
 
+		case "REMOVE_PRODUCT":
+			return {
+				...state,
+				userCart: action.payload
+			};
+
+		case "CLEAR_CART":
+			return {
+				...state,
+				userCart: action.payload
+			};
+
 		// case "USER_ORDERS":
 		// 	return {
 		// 		...state,

@@ -1,11 +1,12 @@
 import React from "react";
 import { Grid, makeStyles, Button } from "@material-ui/core";
-import { useDispatch } from "react-redux";
-// import cartActions from "../../../../actions/pages/cart";
+import { useDispatch, useSelector } from "react-redux";
+import cartActions from "../../../actions/pages/cart";
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		flexGrow: 1
+		flexGrow: 1,
+		margin: "auto"
 	},
 	image: {
 		margin: "20px",
@@ -32,6 +33,12 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 const CartPage = props => {
+	const dispatch = useDispatch();
+	const userCart = useSelector(state => state.cart.userCart);
+	const removeProduct = item => {
+		let removedItem = userCart.filter(product => product !== item);
+		dispatch(cartActions.removeProductFromCart(removedItem));
+	};
 	const renderGrids = () => {
 		return (
 			<Grid spacing={3} item xs={2}>
@@ -42,6 +49,20 @@ const CartPage = props => {
 				/>
 				<h4 className={classes.name}>{props.cartItem.name}</h4>
 				<p className={classes.price}>${props.cartItem.price_cents}</p>
+				<Button
+					onClick={() => removeProduct(props.cartItem)}
+					variant="outlined"
+					type="submit"
+					style={{
+						margin: "20px auto",
+						background: "black",
+						width: "300px",
+						color: "whitesmoke",
+						marginLeft: "20px"
+					}}
+				>
+					Remove From Cart
+				</Button>
 			</Grid>
 		);
 	};

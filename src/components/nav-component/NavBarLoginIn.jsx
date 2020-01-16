@@ -3,16 +3,19 @@ import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { connect, useDispatch, useSelector } from "react-redux";
 import userActions from "../../actions/index";
+import cartActions from "../../actions/pages/cart";
 
 import "./Navbar.scss";
 
 const NavBarLogIn = props => {
+	console.log(props);
 	const dispatch = useDispatch();
 	const userCart = useSelector(state => state.cart.userCart);
 
 	const handleLogOut = () => {
 		props.loginStatus(props.userLoginStatus);
 		dispatch(userActions.logOutUser());
+		dispatch(cartActions.resetUserCart());
 	};
 	return (
 		<div>

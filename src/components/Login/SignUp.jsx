@@ -26,9 +26,10 @@ const SignUp = props => {
 			username: "",
 			password: ""
 		});
+		props.history.push("/");
 	};
 	return (
-		<div className="login">
+		<div id="user-login" className="login">
 			<h2>CREATE AN ACCOUNT</h2>
 			<form className="login-form" onSubmit={handleSubmit}>
 				<input

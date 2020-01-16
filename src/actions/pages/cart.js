@@ -43,17 +43,28 @@ const addToCurrentUser = userObj => dispatch => {
 	dispatch(userCart(userObj));
 };
 
-// const addUserCartToUserCart = product => ({
-// 	type: "USER_ORDERS",
-// 	action: product
-// });
+const clearCart = () => ({
+	type: "CLEAR_CART",
+	payload: []
+});
 
-// const userOrders = product => dispatch => {
-// 	dispatch(addUserCartToUserCart(product));
-// };
+const resetUserCart = () => dispatch => {
+	dispatch(clearCart());
+};
+
+const removeProduct = product => ({
+	type: "REMOVE_PRODUCT",
+	payload: product
+});
+
+const removeProductFromCart = product => dispatch => {
+	dispatch(removeProduct(product));
+};
 export default {
 	postOrderFetch,
 	userCurrentOrder,
-	addToCurrentUser
+	addToCurrentUser,
+	resetUserCart,
+	removeProductFromCart
 	// userOrders
 };

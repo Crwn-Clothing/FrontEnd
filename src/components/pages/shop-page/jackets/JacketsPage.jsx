@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, makeStyles } from "@material-ui/core";
+import { Grid, makeStyles, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 // import shopActions from "../../../../actions/pages/shop";
 import cartActions from "../../../../actions/pages/cart";
@@ -40,7 +40,7 @@ const JacketsPage = props => {
 	};
 	const renderGrids = () => {
 		return (
-			<Grid onClick={() => selectProduct(props.jacket)} spacing={3} item xs={2}>
+			<Grid spacing={3} item xs={2}>
 				<img
 					className={classes.image}
 					src={props.jacket.imageUrl}
@@ -48,6 +48,20 @@ const JacketsPage = props => {
 				/>
 				<h3 className={classes.name}>{props.jacket.name}</h3>
 				<p className={classes.price}>${props.jacket.price_cents}</p>
+				<Button
+					onClick={() => selectProduct(props.jacket)}
+					variant="outlined"
+					type="submit"
+					style={{
+						margin: "20px auto",
+						background: "black",
+						width: "300px",
+						color: "whitesmoke",
+						marginLeft: "20px"
+					}}
+				>
+					Add To Cart
+				</Button>
 			</Grid>
 		);
 	};
