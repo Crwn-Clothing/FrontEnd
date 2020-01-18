@@ -1,7 +1,7 @@
 const baseURL = "http://localhost:3001/users";
 const specificUserURL = userId => `http://localhost:3001/users/${userId}`;
 const loginURL = "http://localhost:3001/login";
-const persistUserURL = "http://localhost:3001/login/auth";
+const persistUserURL = "http://localhost:3001/auth";
 const patchUserURL = userId => `http://localhost:3001/users/${userId}`;
 // action callers
 const setUserAction = userObj => ({
@@ -16,6 +16,13 @@ const clearUserAction = () => ({
 const setLoginStatus = loginStatus => {
 	return {
 		type: "USER_LOGIN_STATUS",
+		payload: !loginStatus
+	};
+};
+
+const persistLogin = loginStatus => {
+	return {
+		type: "PERSIST_LOGIN_STATUS",
 		payload: !loginStatus
 	};
 };
@@ -77,7 +84,6 @@ const loginUserToDB = userObj => dispatch => {
 		.then(res => res.json())
 		.then(data => {
 			dispatch(setUserAction(data.user));
-			localStorage.setItem("currentUser", data.user);
 			localStorage.setItem("token", data.token);
 		});
 };
@@ -86,7 +92,8 @@ const persistUser = userObj => dispatch => {
 	const config = {
 		method: "GET",
 		headers: {
-			Authorization: `bearer ${localStorage.token}`
+			// Authorization: `bearer ${localStorage.token}`
+			Authorization: `bearer ${localStorage.getItem("token")}`
 		}
 	};
 	fetch(persistUserURL, config)
@@ -94,6 +101,10 @@ const persistUser = userObj => dispatch => {
 		.then(user => {
 			dispatch(setUserAction(user));
 		});
+};
+
+const persistLoginStatus = loginStatus => dispatch => {
+	dispatch(persistLogin(loginStatus));
 };
 
 const logOutUser = () => dispatch => {
@@ -126,5 +137,6 @@ export default {
 	deleteUserFromDB,
 	loginUserToDB,
 	persistUser,
-	logOutUser
+	logOutUser,
+	persistLoginStatus
 };

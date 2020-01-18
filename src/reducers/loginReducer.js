@@ -11,6 +11,8 @@ export const loginReducer = (state = initialState, action) => {
 			return { ...state, isLoggedIn: action.payload };
 		case "CLEAR_USER":
 			return { ...state, currentUser: action.payload };
+		case "PERSIST_LOGIN_STATUS":
+			return { ...state, isLoggedIn: action.payload };
 		default:
 			return state;
 	}

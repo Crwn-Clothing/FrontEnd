@@ -17,14 +17,22 @@ import MensContainer from "./components/pages/shop-page/mens/MensContainer";
 import NavBarLoginIn from "./components/nav-component/NavBarLoginIn";
 import CartContainer from "./components/pages/cart/CartContainer";
 import cartActions from "./actions/pages/cart";
+import userActions from "./actions/index";
+import CheckoutContainer from "./components/pages/checkout/CheckoutContainer";
+import shopActions from "./actions/pages/shop";
 
 import "./App.scss";
 
 const App = props => {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		props.getProducts(props.products);
 		dispatch(cartActions.postOrderFetch(props.hat.id, props.currentUser.id));
+
+		if (localStorage.token) {
+			dispatch(shopActions.fetchProducts(props.products));
+			dispatch(userActions.persistUser(props.currentUser));
+			dispatch(userActions.persistLoginStatus(props.isLoggedIn));
+		}
 	}, [props.getProducts, dispatch]);
 	return (
 		<div className="App">
@@ -43,6 +51,7 @@ const App = props => {
 				<Route exact path="/womens" component={WomensContainer} />
 				<Route exact path="/mens" component={MensContainer} />
 				<Route exact path="/cart" component={CartContainer} />
+				<Route exact path="/checkout" component={CheckoutContainer} />
 			</Switch>
 			<Footer />
 		</div>
