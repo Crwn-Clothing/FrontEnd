@@ -6,7 +6,7 @@ import HatsPage from "./HatsPage";
 const HatsContainer = props => {
 	const renderHats = () => {
 		return props.hats.map(hat => {
-			return <HatsPage key={hat.id} hat={hat} />;
+			return <HatsPage key={hat.id} hat={hat} history={props.history} />;
 		});
 	};
 	return <div className="card-container">{renderHats()}</div>;

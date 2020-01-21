@@ -1,17 +1,17 @@
 const initialState = {
-	userOrders: [],
-	userCart: [],
-	currentOrder: {}
+	currentOrder: [],
+	cartOrders: {},
+	userCart: []
 };
 
 export const cartReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case "CART_ORDERS":
+		case "CART_ORDER":
 			return {
 				...state,
 				cartOrders: action.payload
 			};
-		case "CURRENT_ORDERS":
+		case "CURRENT_ORDER":
 			return {
 				...state,
 				currentOrder: action.payload
@@ -34,11 +34,6 @@ export const cartReducer = (state = initialState, action) => {
 				userCart: action.payload
 			};
 
-		// case "USER_ORDERS":
-		// 	return {
-		// 		...state,
-		// 		userOrders: [...state.userOrders, state.currentOrder]
-		// 	};
 		default:
 			return state;
 	}

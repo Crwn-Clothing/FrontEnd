@@ -3,6 +3,7 @@ import { Grid, makeStyles, Button } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import shopActions from "../../../../actions/pages/shop";
 import cartActions from "../../../../actions/pages/cart";
+import ProductContainer from "../product/ProductContainer";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -35,17 +36,24 @@ const useStyles = makeStyles(theme => ({
 	}
 }));
 const HatsPage = props => {
+	console.log("props: ", props);
 	const dispatch = useDispatch();
 	const selectProduct = product => {
 		dispatch(shopActions.getHatProduct(product));
 		dispatch(cartActions.userCurrentOrder(product));
 		dispatch(cartActions.addToCurrentUser(product));
-		// dispatch(cartActions.userOrders());
 	};
+	const handleClick = hat => {
+		console.log("hat", hat);
+		// props.history.push("/hats/:id");
+		// return <ProductContainer hat={hat} />;
+	};
+
 	const renderGrids = () => {
 		return (
 			<Grid spacing={3} item xs={2}>
 				<img
+					// onClick={() => handleClick(props.hat)}
 					className={classes.image}
 					src={props.hat.imageUrl}
 					alt={props.hat.name}

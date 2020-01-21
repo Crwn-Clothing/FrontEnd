@@ -5,4 +5,14 @@
 	.checkout {
 		display: flex;
 	}
+	.card-element {
+		padding: 20px;
+		border: 10px solid crimson;
+		display: flex;
+		flex-direction: column;
+
+		.InputElement {
+			width: 200px;
+		}
+	}
 }

@@ -49,6 +49,16 @@ const CartPage = props => {
 				/>
 				<h4 className={classes.name}>{props.cartItem.name}</h4>
 				<p className={classes.price}>${props.cartItem.price_cents}</p>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-between",
+						width: "260px"
+					}}
+				>
+					<button style={{ marginLeft: "50px" }}>+</button>
+					<button style={{ marginLeft: "50px" }}>-</button>
+				</div>
 				<Button
 					onClick={() => removeProduct(props.cartItem)}
 					variant="outlined"

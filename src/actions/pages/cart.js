@@ -1,12 +1,12 @@
-const ordersPostURL = "http://localhost:3001/orders";
+const cartsPostURL = "http://localhost:3001/carts";
 // const userCartURL = userId => `http://localhost:3001/users/${userId}`;
 
-const postOrder = orderObj => ({
-	type: "CART_ORDERS",
-	payload: orderObj
+const postOrder = cartObj => ({
+	type: "CART_ORDER",
+	payload: cartObj
 });
 
-const postOrderFetch = (productId, userId) => dispatch => {
+const createOrder = (userId, products, total) => dispatch => {
 	const config = {
 		method: "POST",
 		headers: {
@@ -15,18 +15,20 @@ const postOrderFetch = (productId, userId) => dispatch => {
 			Authorization: `Bearer ${localStorage.token}`
 		},
 		body: JSON.stringify({
-			product: productId,
-			user: userId
+			cart: { user_id: userId, price: total },
+			products: products
 		})
 	};
 
-	fetch("http://localhost:3001/orders", config)
+	fetch(cartsPostURL, config)
 		.then(res => res.json())
-		.then(order => dispatch(postOrder(order)));
+		.then(cartObj => {
+			dispatch(postOrder(cartObj));
+		});
 };
 
 const currentOrder = product => ({
-	type: "CURRENT_ORDERS",
+	type: "CURRENT_ORDER",
 	payload: product
 });
 
@@ -61,10 +63,9 @@ const removeProductFromCart = product => dispatch => {
 	dispatch(removeProduct(product));
 };
 export default {
-	postOrderFetch,
+	createOrder,
 	userCurrentOrder,
 	addToCurrentUser,
 	resetUserCart,
 	removeProductFromCart
-	// userOrders
 };

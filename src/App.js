@@ -22,11 +22,12 @@ import CheckoutContainer from "./components/pages/checkout/CheckoutContainer";
 import shopActions from "./actions/pages/shop";
 
 import "./App.scss";
+import ProductContainer from "./components/pages/shop-page/product/ProductContainer";
 
 const App = props => {
 	const dispatch = useDispatch();
 	useEffect(() => {
-		dispatch(cartActions.postOrderFetch(props.hat.id, props.currentUser.id));
+		// dispatch(cartActions.postOrderFetch(props.hat.id, props.currentUser.id));
 
 		if (localStorage.token) {
 			dispatch(shopActions.fetchProducts(props.products));
@@ -34,6 +35,7 @@ const App = props => {
 			dispatch(userActions.persistLoginStatus(props.isLoggedIn));
 		}
 	}, [props.getProducts, dispatch]);
+	console.log(props.isLoggedIn);
 	return (
 		<div className="App">
 			{props.isLoggedIn ? (
@@ -52,6 +54,7 @@ const App = props => {
 				<Route exact path="/mens" component={MensContainer} />
 				<Route exact path="/cart" component={CartContainer} />
 				<Route exact path="/checkout" component={CheckoutContainer} />
+				<Route exact path="/hats/:id" component={ProductContainer} />
 			</Switch>
 			<Footer />
 		</div>
