@@ -6,7 +6,7 @@ const CheckoutContainer = props => {
 	return (
 		<div className="checkout-container">
 			<CheckoutItemContainer />
-			<CheckoutPaymentContainer />
+			<CheckoutPaymentContainer history={props.history} />
 		</div>
 	);
 };

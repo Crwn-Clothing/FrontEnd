@@ -8,7 +8,7 @@ const CheckoutPaymentContainer = props => {
 			<div className="example">
 				<h1>Checkout</h1>
 				<Elements>
-					<CheckoutPaymentPage />
+					<CheckoutPaymentPage history={props.history} />
 				</Elements>
 			</div>
 		</StripeProvider>

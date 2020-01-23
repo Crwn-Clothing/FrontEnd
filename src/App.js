@@ -24,6 +24,7 @@ import shopActions from "./actions/pages/shop";
 import productActions from "./actions/pages/shop";
 
 import "./App.scss";
+import { ThankYou } from "./components/pages/checkout/ThankYou";
 
 const App = props => {
 	const dispatch = useDispatch();
@@ -55,6 +56,7 @@ const App = props => {
 				<Route exact path="/checkout" component={CheckoutContainer} />
 				<Route exact path="/hats/:id" component={ProductContainer} />
 				<Route exact path="/wishlist" component={WishListContainer} />
+				<Route exact path="/thankyou" component={ThankYou} />
 			</Switch>
 			<Footer />
 		</div>

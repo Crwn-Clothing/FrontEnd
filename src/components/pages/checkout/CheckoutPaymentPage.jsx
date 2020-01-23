@@ -5,6 +5,7 @@ import { Button } from "@material-ui/core";
 import cartActions from "../../../actions/pages/cart";
 import checkoutActions from "../../../actions/pages/checkout";
 import "./Checkout.scss";
+import { Redirect } from "react-router-dom";
 
 const styleStripe = () => {
 	return {
@@ -42,10 +43,8 @@ const CheckoutPaymentPage = props => {
 				checkoutActions.postNewOrder(user.id, userCart, totalPrice, token)
 			);
 		});
-		// debugger;
 
-		// dispatch(checkoutActions.fetchStripeOrder());
-		// Loop orders, dispatch
+		props.history.push("/thankyou");
 	};
 
 	if (complete) return <h1>Purchase Complete!</h1>;
