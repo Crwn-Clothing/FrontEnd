@@ -28,7 +28,13 @@ const AccountPage = props => {
 		});
 	};
 	return (
-		<div className="login">
+		<div
+			style={{
+				marginTop: "100px",
+				marginBottom: "200px"
+			}}
+			className="login"
+		>
 			<h2>UPDATE ACCOUNT</h2>
 			<form className="login-form" onSubmit={handleSubmit}>
 				<input
@@ -65,7 +71,7 @@ const AccountPage = props => {
 						color: "whitesmoke"
 					}}
 				>
-					Create Account
+					Update Information
 				</Button>
 			</form>
 		</div>

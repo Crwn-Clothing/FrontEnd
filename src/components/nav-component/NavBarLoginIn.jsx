@@ -40,7 +40,7 @@ const NavBarLogIn = props => {
 				<li>
 					<h1>
 						<NavLink exact to="/">
-							Crwn Clothing
+							👑 Clothing
 						</NavLink>
 					</h1>
 				</li>

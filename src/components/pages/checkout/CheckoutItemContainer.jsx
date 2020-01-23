@@ -10,39 +10,41 @@ const CheckoutItemContainer = props => {
 
 	let priceArr = cart.map(product => product.price_cents);
 	let totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
-	const renderCheckoutItems = () => {
+
+	const renderProductNames = () => {
 		return cart.map(item => {
 			return (
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "space-evenly",
-						marginBottom: "20px"
-					}}
-					key={item.id}
-				>
-					<Row>
-						Name: <Col>{item.name}</Col>
-					</Row>
+				<Col key={item}>
+					<p>{item.name}</p>
+				</Col>
+			);
+		});
+	};
+	const renderProductImages = () => {
+		return cart.map(item => {
+			return (
+				<Col key={item.id}>
+					<img height="35px" src={item.imageUrl} alt={item.name} />
+				</Col>
+			);
+		});
+	};
+	const renderProductPrices = () => {
+		return cart.map(item => {
+			return (
+				<Col key={item.id}>
+					<p>${item.price_cents}</p>
+				</Col>
+			);
+		});
+	};
 
-					<Row>
-						Product:{" "}
-						<Col>
-							<img height="50px" src={item.imageUrl} alt={item.name} />
-						</Col>
-					</Row>
-
-					<Row>
-						Price: <Col>${item.price_cents}</Col>
-					</Row>
-
-					<Col>
-						Remove:
-						<Col>
-							<button>Delete</button>
-						</Col>
-					</Col>
-				</div>
+	const renderDeleteButton = () => {
+		return cart.map(item => {
+			return (
+				<Col key={item.id}>
+					<button>Remove</button>
+				</Col>
 			);
 		});
 	};
@@ -52,11 +54,32 @@ const CheckoutItemContainer = props => {
 			style={{
 				width: "500px",
 				height: "100%",
-				border: "10px solid black"
+				border: "10px solid black",
+				marginBottom: "200px"
 			}}
 		>
 			<Container>
-				{renderCheckoutItems()}
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "space-evenly",
+						marginBottom: "20px"
+					}}
+				>
+					<Row style={{ marginBottom: "20px" }}>
+						<div style={{ margin: "auto 0" }}>Name: {renderProductNames()}</div>
+					</Row>
+					<Row style={{ marginBottom: "20px" }}>
+						<div style={{ margin: "auto 0" }}>
+							Product: {renderProductImages()}
+						</div>
+					</Row>
+					<Row style={{ marginBottom: "20px" }}>
+						Price:
+						<div style={{ margin: "auto 0" }}>{renderProductPrices()}</div>
+					</Row>
+				</div>
+
 				<br />
 				<br />
 				<br></br>
@@ -67,7 +90,6 @@ const CheckoutItemContainer = props => {
 						<div>${totalPrice}</div>
 						<br></br>
 					</Col>
-					{/* <Link to="/thankyou"><Button onClick={this.payForItems} color="primary" size="lg">Place Order</Button></Link> */}
 				</Row>
 			</Container>
 		</div>
