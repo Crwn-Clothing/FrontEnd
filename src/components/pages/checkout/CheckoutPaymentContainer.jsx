@@ -6,7 +6,7 @@ const CheckoutPaymentContainer = props => {
 	return (
 		<StripeProvider apiKey="pk_test_hsEQFcbVVFF5K5QNToyO7Nuz00dn0SVm7U">
 			<div className="example">
-				<h1>React Stripe Elements Example</h1>
+				<h1>Checkout</h1>
 				<Elements>
 					<CheckoutPaymentPage />
 				</Elements>
