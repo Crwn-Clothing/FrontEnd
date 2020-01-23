@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import shopActions from "../../../../actions/pages/shop";
 import cartActions from "../../../../actions/pages/cart";
 import ProductContainer from "../product/ProductContainer";
+import wishListActions from "../../../../actions/pages/wishList";
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -43,6 +44,9 @@ const HatsPage = props => {
 		dispatch(cartActions.userCurrentOrder(product));
 		dispatch(cartActions.addToCurrentUser(product));
 	};
+	const AddProductToWishList = product => {
+		dispatch(wishListActions.addItemToWishList(product));
+	};
 	const handleClick = hat => {
 		console.log("hat", hat);
 		// props.history.push("/hats/:id");
@@ -73,6 +77,20 @@ const HatsPage = props => {
 					}}
 				>
 					Add To Cart
+				</Button>
+				<Button
+					onClick={() => AddProductToWishList(props.hat)}
+					variant="outlined"
+					type="submit"
+					style={{
+						margin: "20px auto",
+						background: "black",
+						width: "300px",
+						color: "whitesmoke",
+						marginLeft: "20px"
+					}}
+				>
+					Add To WishList
 				</Button>
 			</Grid>
 		);

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import userActions from "../../actions/index";
 
 import "./Navbar.scss";
@@ -45,7 +45,7 @@ const NavBar = props => {
 				<li>
 					<Button variant="outlined">
 						<NavLink exact to="/wishlist" activeClassName="selected">
-							Wishlist
+							WishList
 						</NavLink>
 					</Button>
 				</li>

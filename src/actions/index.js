@@ -92,7 +92,6 @@ const persistUser = userObj => dispatch => {
 	const config = {
 		method: "GET",
 		headers: {
-			// Authorization: `bearer ${localStorage.token}`
 			Authorization: `bearer ${localStorage.getItem("token")}`
 		}
 	};

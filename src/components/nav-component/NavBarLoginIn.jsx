@@ -6,11 +6,13 @@ import userActions from "../../actions/index";
 import cartActions from "../../actions/pages/cart";
 
 import "./Navbar.scss";
+import wishList from "../../actions/pages/wishList";
 
 const NavBarLogIn = props => {
 	console.log(props);
 	const dispatch = useDispatch();
 	const userCart = useSelector(state => state.cart.userCart);
+	const wishListCart = useSelector(state => state.wishList.wishListCart);
 
 	const handleLogOut = () => {
 		props.loginStatus(props.userLoginStatus);
@@ -59,7 +61,7 @@ const NavBarLogIn = props => {
 				<li>
 					<Button variant="outlined">
 						<NavLink exact to="/wishlist" activeClassName="selected">
-							Wishlist
+							Wishlist({wishListCart.length})
 						</NavLink>
 					</Button>
 				</li>
