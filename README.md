@@ -1,16 +1,9 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Crwn Clothing Frontend
 
-## Available Scripts
+### Description
+Crwn Clothing is an ecommerce web application that allows users to view, add items to their wishlist or cart, and purchase products using Stripes API.
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+I built this application using React/Redux for the frontend and Ruby on Rails for the backend, with PostgreSQL to manage the database. I used active model serializer to format my JSON responses, and implemented JSON web user authentication using JSON Web Tokens and the BCrypt library to one-way encrypt user passwords. All styling was accomplished with Sass-compiled CSS and Material UI. I used Nokogiri to web scape ASOS and H&M API’s product information for the user.
 
 ### `yarn test`
 
