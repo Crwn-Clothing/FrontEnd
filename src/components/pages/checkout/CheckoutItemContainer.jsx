@@ -4,15 +4,15 @@ import { Container, Row, Col } from "reactstrap";
 import { Button } from "reactstrap";
 import CheckoutItemList from "./CheckoutItemList";
 
-const CheckoutItemContainer = props => {
+const CheckoutItemContainer = (props) => {
 	const dispatch = useDispatch();
-	const cart = useSelector(state => state.cart.userCart);
+	const cart = useSelector((state) => state.cart.userCart);
 
-	let priceArr = cart.map(product => product.price_cents);
+	let priceArr = cart.map((product) => product.price_cents);
 	let totalPrice = priceArr.reduce((acc, cur) => acc + cur, 0);
 
 	const renderProductNames = () => {
-		return cart.map(item => {
+		return cart.map((item) => {
 			return (
 				<Col key={item}>
 					<p>{item.name}</p>
@@ -21,7 +21,7 @@ const CheckoutItemContainer = props => {
 		});
 	};
 	const renderProductImages = () => {
-		return cart.map(item => {
+		return cart.map((item) => {
 			return (
 				<Col key={item.id}>
 					<img height="35px" src={item.imageUrl} alt={item.name} />
@@ -30,7 +30,7 @@ const CheckoutItemContainer = props => {
 		});
 	};
 	const renderProductPrices = () => {
-		return cart.map(item => {
+		return cart.map((item) => {
 			return (
 				<Col key={item.id}>
 					<p>${item.price_cents}</p>
@@ -40,7 +40,7 @@ const CheckoutItemContainer = props => {
 	};
 
 	const renderDeleteButton = () => {
-		return cart.map(item => {
+		return cart.map((item) => {
 			return (
 				<Col key={item.id}>
 					<button>Remove</button>
@@ -55,7 +55,8 @@ const CheckoutItemContainer = props => {
 				width: "500px",
 				height: "100%",
 				border: "10px solid black",
-				marginBottom: "200px"
+				marginBottom: "200px",
+				marginTop: "128px",
 			}}
 		>
 			<Container>
@@ -63,7 +64,7 @@ const CheckoutItemContainer = props => {
 					style={{
 						display: "flex",
 						justifyContent: "space-evenly",
-						marginBottom: "20px"
+						marginBottom: "20px",
 					}}
 				>
 					<Row style={{ marginBottom: "20px" }}>

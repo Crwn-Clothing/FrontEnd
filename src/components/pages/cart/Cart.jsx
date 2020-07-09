@@ -3,10 +3,10 @@ import { Grid, makeStyles, Button } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import cartActions from "../../../actions/pages/cart";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
-		width: "300px"
+		width: "300px",
 	},
 	image: {
 		margin: "20px",
@@ -14,30 +14,30 @@ const useStyles = makeStyles(theme => ({
 
 		width: "300px",
 		height: "300px",
-		backgroundSize: "cover"
+		backgroundSize: "cover",
 	},
 	name: {
 		marginLeft: "20px",
 		textAlign: "center",
-		width: "300px"
+		width: "300px",
 	},
 	price: {
 		marginLeft: "20px",
 		textAlign: "center",
-		width: "300px"
+		width: "300px",
 	},
 
 	paper: {
 		padding: theme.spacing(2),
 		textAlign: "center",
-		color: theme.palette.text.secondary
-	}
+		color: theme.palette.text.secondary,
+	},
 }));
-const CartPage = props => {
+const CartPage = (props) => {
 	const dispatch = useDispatch();
-	const userCart = useSelector(state => state.cart.userCart);
-	const removeProduct = item => {
-		let removedItem = userCart.filter(product => product !== item);
+	const userCart = useSelector((state) => state.cart.userCart);
+	const removeProduct = (item) => {
+		let removedItem = userCart.filter((product) => product !== item);
 		dispatch(cartActions.removeProductFromCart(removedItem));
 	};
 
@@ -61,7 +61,7 @@ const CartPage = props => {
 						background: "black",
 						width: "300px",
 						color: "whitesmoke",
-						marginLeft: "20px"
+						marginLeft: "20px",
 					}}
 				>
 					Remove From Cart

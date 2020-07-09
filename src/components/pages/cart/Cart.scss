@@ -1,0 +1,11 @@
+.card-container {
+	display: flex;
+	flex-direction: colummn;
+
+	.card {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		width: 80%;
+	}
+}

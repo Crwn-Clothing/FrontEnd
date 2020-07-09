@@ -4,10 +4,10 @@ import { Grid, makeStyles, Button } from "@material-ui/core";
 import wishListActions from "../../../actions/pages/wishList";
 import cartActions from "../../../actions/pages/cart";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
 	root: {
 		flexGrow: 1,
-		width: "300px"
+		width: "300px",
 	},
 	image: {
 		margin: "20px",
@@ -15,38 +15,38 @@ const useStyles = makeStyles(theme => ({
 
 		width: "300px",
 		height: "300px",
-		backgroundSize: "cover"
+		backgroundSize: "cover",
 	},
 	name: {
 		marginLeft: "20px",
 		textAlign: "center",
-		width: "300px"
+		width: "300px",
 	},
 	price: {
 		marginLeft: "20px",
 		textAlign: "center",
-		width: "300px"
+		width: "300px",
 	},
 
 	paper: {
 		padding: theme.spacing(2),
 		textAlign: "center",
-		color: theme.palette.text.secondary
-	}
+		color: theme.palette.text.secondary,
+	},
 }));
 
-const WishListPage = props => {
+const WishListPage = (props) => {
 	const dispatch = useDispatch();
-	const wishListCart = useSelector(state => state.wishList.wishListCart);
+	const wishListCart = useSelector((state) => state.wishList.wishListCart);
 
-	const removeFromWishList = product => {
+	const removeFromWishList = (product) => {
 		let filteredWishList = wishListCart.filter(
-			wishListItem => wishListItem !== product
+			(wishListItem) => wishListItem !== product
 		);
 		dispatch(wishListActions.removeItemFromWishList(filteredWishList));
 	};
 
-	const addProductToCart = product => {
+	const addProductToCart = (product) => {
 		dispatch(cartActions.addToCurrentUser(product));
 	};
 
@@ -70,7 +70,7 @@ const WishListPage = props => {
 						background: "black",
 						width: "300px",
 						color: "whitesmoke",
-						marginLeft: "20px"
+						marginLeft: "20px",
 					}}
 				>
 					Add to Cart
@@ -84,7 +84,7 @@ const WishListPage = props => {
 						background: "black",
 						width: "300px",
 						color: "whitesmoke",
-						marginLeft: "20px"
+						marginLeft: "20px",
 					}}
 				>
 					Remove from WishList
